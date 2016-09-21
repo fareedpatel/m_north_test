@@ -1,0 +1,2 @@
+Banned word: red, green, yellow
+Exception: covered, coloured, evergreen, greenbelt
