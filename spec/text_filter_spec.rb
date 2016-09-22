@@ -3,11 +3,12 @@ require 'text_filter'
 describe TextFilter do
   subject(:text_filter) { described_class.new( string_input: string_input) }
 
-  let(:string_input)    { 'my favourite colours are green and blue' }
-  let(:string_input_2)  { 'I would like red, blue and green clothes' }
-  let(:string_input_3)  {'No houses on the greenbelt'}
   let(:banned_words)    { 'red green blue yellow' }
   let(:exceptions_list) { 'covered coloured evergreen greenbelt blues' }
+  let(:string_input)    { 'my favourite colours are green and blue' }
+  let(:string_input_2)  { 'I would like RED, Blue and Green clothes' }
+  let(:string_input_3)  {'No houses on the greenbelt'}
+
 
     describe 'String input' do
       it 'allows you to pass string and initalize' do
@@ -25,12 +26,12 @@ describe TextFilter do
         expect(text_filter.banned_subtitute('blue')).to eq "bl--"
       end
 
-      it "replaces vowels of banned words" do
+      it "replaces vowels with (-) for banned words" do
         expect(text_filter.banned_subtitute(string_input)).to eq "my favourite colours are gr--n and bl--"
       end
 
       it 'returns the string with the punction' do
-          expect(text_filter.banned_subtitute(string_input_2)).to eq "I would like r-d, bl-- and gr--n clothes"
+          expect(text_filter.banned_subtitute(string_input_2)).to eq "I would like R-D, Bl-- and Gr--n clothes"
       end
     end
 
@@ -39,5 +40,4 @@ describe TextFilter do
         expect(text_filter.banned_subtitute(string_input_3)).to eq "No houses on the greenbelt"
     end
   end
-
 end
